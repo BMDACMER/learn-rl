@@ -75,7 +75,7 @@ class REINFORCE(object):
 
             # Update policy
             a_prob = self.policy(s).flatten()
-            policy_loss = -pow(self.GAMMA, t) * ((g - v_s).detach()) * torch.log(a_prob[a])
+            policy_loss = -pow(self.GAMMA, t) * ((g - v_s).detach()) * torch.log(a_prob[a])    # 这块与REINFORCE_baseline不同
             self.policy_optimizer.zero_grad()
             policy_loss.backward()
             self.policy_optimizer.step()
